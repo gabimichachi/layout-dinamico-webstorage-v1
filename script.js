@@ -27,6 +27,12 @@ articleColorPicker.addEventListener('input', (e) => {
 localStorage.setItem('articleColor', color);
 });
 
-fontSelect.addEventListener('change', (e) => {});
+fontSelect.addEventListener('change', (e) => {
+    const font = e.target.value;
+    newsArticle.forEach(article => {
+        article.style.fontFamily = font;
+    });
+    localStorage.setItem('fontFamily', font);
+});
 
 themeToggle.addEventListener('click', () => {});

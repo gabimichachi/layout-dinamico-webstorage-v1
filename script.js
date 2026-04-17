@@ -16,18 +16,22 @@ const loadPreferences = () => {
 
     const saveArticleColor = localStorage.getItem('articleColor');
     if (saveArticleColor) {
-
+        newsArticle.forEach(article => {
+            article.style.backgroundColor = saveArticleColor;
+        });
+        articleColorPicker.value = saveArticleColor;
     }
 
     const savedFont = localStorage.getItem('fontFamily');
     if (savedFont) {
-        
+        document.body.style.fontFamily = savedFont;
+        fontSelect.value = savedFont;
     }
 
     const saveTheme = localStorage.getItem('theme');
     if (saveTheme === 'dark') {
         body.classList.add('dark');
-        themeToggle.innerHTML = '<span class="material-icons">light_mode</span>'
+        themeToggle.textContent = 'light_mode'
     }
 };
 
@@ -57,10 +61,10 @@ fontSelect.addEventListener('change', (e) => {
 themeToggle.addEventListener('click', (e) => {
     body.classList.toggle('dark');
     const isDark = body.classList.contains('dark');
-    themeToggle.innerHTML = isDark
-    ? '<span class="material-icons">light_mode</span>'
-    : '<span class="material-icons">dark_mode</span>';
+    themeToggle.textContent= isDark ? 'light_mode': 'dark_mode' ;
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
 });
 
 loadPreferences();
+
+

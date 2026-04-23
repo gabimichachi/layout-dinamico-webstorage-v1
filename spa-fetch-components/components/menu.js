@@ -19,6 +19,13 @@
         const fecharComEsc = (event) => {
             const isEsc = event.key === 'Escape';
             const ativo = menu.classList.contains('active');
+
+            if (isEsc && ativo){
+                menu.classList.remove('actived')
+            }
         };
+
+        botao.addEventListener('pointerdown', toggleMenu );
+        document.addEventListener('keydown', fecharComEsc);
     });
 };

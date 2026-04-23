@@ -1,0 +1,1 @@
+import { iniciarMenu } from "../components/menu.js";

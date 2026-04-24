@@ -1,6 +1,7 @@
 // inicializa comportamento do menu mobile //
     export const iniciarMenu = () =>{
-        const menus = document.querySelectorAll('[data-menu]')
+        const menus = document.querySelectorAll('[data-menu]');
+        console.log(menus);
 
         menus.forEach((menu) =>{
         
@@ -21,7 +22,7 @@
             const ativo = menu.classList.contains('active');
 
             if (isEsc && ativo){
-                menu.classList.remove('actived')
+                menu.classList.remove('active');
             }
         };
 
@@ -29,3 +30,4 @@
         document.addEventListener('keydown', fecharComEsc);
     });
 };
+

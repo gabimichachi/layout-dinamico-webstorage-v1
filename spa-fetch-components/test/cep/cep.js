@@ -1,28 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch</title>
 
-    <script src="cep.js" defer></script>
-</head>
-<body>
-    
-    <h2>Digite o cep:</h2>
+// fetch('https://viacep.com.br/ws/01001000/json/')
+// .then((resposta) => {
 
-    <form>
-        <input type="text" name="Texto" placeholder="Escreva aqui">
+//     return resposta.json()
+// })
 
-        <br><br>
 
-        <button id="btnThen"> Buscar com then().</button>
-        <button id="btnAsync">Buscar com async/await</button>
-    </form>
-</body>
 
-<script>
-    const btnThen = document.getElementById('btnThen')
+// const cep = '01001000';
+
+// fetch('https://viacep.com.br/ws/' + cep + '/json/')
+// .then(function(resposta) {
+//     if (!resposta.ok) {
+//         throw new Error("cep invalido");
+//     }
+//     return resposta.json();
+// })
+// .then(function(dados) {
+//     console.log(dados);
+// })
+// .catch(function(erro) {
+//     console.log(erro);
+// });
+
+const btnThen = document.getElementById('btnThen')
 const btnAsync = document.getElementById('btnAsync')
 const inputCep = document.getElementById('cep')
 
@@ -96,5 +97,3 @@ btnAsync.addEventListener('click', async () => {
 
 
   
-</script>
-</html>

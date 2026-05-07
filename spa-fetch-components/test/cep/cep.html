@@ -1,3 +1,6 @@
+</script>
+</html>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,89 +15,52 @@
     <h2>Digite o cep:</h2>
 
     <form>
-        <input type="text" name="Texto" placeholder="Escreva aqui">
+        <input type="text" id="cep" placeholder="Escreva aqui">
 
         <br><br>
 
-        <button id="btnThen"> Buscar com then().</button>
-        <button id="btnAsync">Buscar com async/await</button>
+        <button type="button" id="btnThen">Botão com then().</button>
+        <button type="button" id="btnAsync">Botão com async/await</button>
     </form>
+
 </body>
 
 <script>
-    const btnThen = document.getElementById('btnThen')
+const btnThen = document.getElementById('btnThen')
 const btnAsync = document.getElementById('btnAsync')
 const inputCep = document.getElementById('cep')
 
-
-//  then
+// botao then
 btnThen.addEventListener('click', () => {
-
     const cep = inputCep.value
 
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(response => response.json())
+        .then(dados => {
+            if (dados.erro) throw new Error('CEP não encontrado')
 
-    .then((resposta) => {
-
-        if (!resposta.ok) {
-            throw new Error('CEP inválido')
-        }
-
-        return resposta.json()
-    })
-
-    .then((dados) => {
-
-        if (dados.erro) {
-            throw new Error('CEP não encontrado')
-        }
-
-        console.log(dados)
-        alert(`Cidade: ${dados.localidade}`)
-
-    })
-
-    .catch((erro) => {
-        console.warn(erro.message)
-    })
-
+            console.log(dados)
+            alert(`Cidade: ${dados.localidade}`)
+        })
+        .catch(erro => console.warn(erro.message))
 })
 
-
-
-// asyc
+// botao async
 btnAsync.addEventListener('click', async () => {
-
     try {
-
         const cep = inputCep.value
 
         const resposta = await fetch(`https://viacep.com.br/ws/${cep}/json/`)
-
-        if (!resposta.ok) {
-            throw new Error('CEP inválido')
-        }
-
         const dados = await resposta.json()
 
-        if (dados.erro) {
-            throw new Error('CEP não encontrado')
-        }
+        if (dados.erro) throw new Error('CEP não encontrado')
 
         console.log(dados)
         alert(`Cidade: ${dados.localidade}`)
 
     } catch (erro) {
-
         console.warn(erro.message)
-
     }
-
 })
-
-
-
-
-  
 </script>
 </html>
